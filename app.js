@@ -370,32 +370,32 @@ document.addEventListener('DOMContentLoaded', () => {
     function calculateProject() {
         if (!screensRange) return;
 
-        // 1. Base prices & weeks by platform
+        // 1. Base prices & weeks by platform (minimum price starts at $3000)
         const platformValue = document.querySelector('input[name="platform"]:checked').value;
         let basePrice = 0;
         let baseWeeks = 0;
         let platformLabel = "";
 
         if (platformValue === 'android') {
-            basePrice = 1200;
+            basePrice = 3000;
             baseWeeks = 3;
             platformLabel = "Android Nativo";
         } else if (platformValue === 'ios') {
-            basePrice = 1200;
+            basePrice = 3000;
             baseWeeks = 3;
             platformLabel = "iOS Nativo";
         } else {
-            basePrice = 1800;
+            basePrice = 4500;
             baseWeeks = 4;
             platformLabel = "React Native (iOS & Android)";
         }
 
-        // 2. Screens calculation (each screen adds $90 and approx 1.5 days)
+        // 2. Screens calculation (minimum 3 screens is $0 add-on, each additional adds $150 and 1.5 days)
         const screens = parseInt(screensRange.value);
         screensVal.innerText = `${screens} pantallas`;
         
-        const screensPrice = screens * 90;
-        const screensWeeks = Math.ceil(screens * 0.22); 
+        const screensPrice = (screens - 3) * 150;
+        const screensWeeks = Math.ceil((screens - 3) * 0.25); 
 
         // 3. Features calculation
         let featuresPrice = 0;
@@ -406,25 +406,41 @@ document.addEventListener('DOMContentLoaded', () => {
         checkboxes.forEach(cb => {
             if (cb.checked) {
                 if (cb.value === 'maps') {
-                    featuresPrice += 400;
+                    featuresPrice += 500;
                     featuresWeeks += 1;
                     selectedFeaturesList.push("Mapas/Geolocalización");
                 } else if (cb.value === 'chat') {
-                    featuresPrice += 500;
+                    featuresPrice += 600;
                     featuresWeeks += 1;
                     selectedFeaturesList.push("Chat en vivo");
                 } else if (cb.value === 'auth') {
-                    featuresPrice += 250;
+                    featuresPrice += 400;
                     featuresWeeks += 0.5;
                     selectedFeaturesList.push("Autenticación");
                 } else if (cb.value === 'push') {
-                    featuresPrice += 150;
+                    featuresPrice += 300;
                     featuresWeeks += 0.5;
                     selectedFeaturesList.push("Notificaciones Push");
                 } else if (cb.value === 'dashboard') {
-                    featuresPrice += 600;
+                    featuresPrice += 800;
                     featuresWeeks += 1.5;
                     selectedFeaturesList.push("Panel de Admin");
+                } else if (cb.value === 'videocalls') {
+                    featuresPrice += 1200;
+                    featuresWeeks += 2;
+                    selectedFeaturesList.push("Videollamadas (HD)");
+                } else if (cb.value === 'calls') {
+                    featuresPrice += 800;
+                    featuresWeeks += 1.5;
+                    selectedFeaturesList.push("Llamadas de Voz");
+                } else if (cb.value === 'streaming') {
+                    featuresPrice += 1500;
+                    featuresWeeks += 2.5;
+                    selectedFeaturesList.push("Transmisiones en Vivo");
+                } else if (cb.value === 'ai') {
+                    featuresPrice += 2000;
+                    featuresWeeks += 3;
+                    selectedFeaturesList.push("Agentes de IA");
                 }
             }
         });
