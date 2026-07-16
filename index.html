@@ -233,6 +233,26 @@
                             </div>
                         </div>
 
+                        <!-- App Option 4: VIBE STORE -->
+                        <div class="app-option" data-app="store" id="opt-store">
+                            <div class="app-option-icon store-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                                </svg>
+                            </div>
+                            <div class="app-option-details">
+                                <h3>Vibe Store</h3>
+                                <p class="app-tagline">Tienda de Ropa & Sneakers</p>
+                                <p class="app-desc-short">E-commerce dinámico interactivo con carrito en tiempo real, catálogo de productos, filtros de categorías y simulación de compra.</p>
+                                <div class="tech-tags">
+                                    <span>React Native</span>
+                                    <span>Redux Toolkit</span>
+                                    <span>Tailwind CSS</span>
+                                    <span>Stripe API</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <!-- Simulator Device Screen Column -->
@@ -248,8 +268,163 @@
                                 
                                 <!-- Phone Screen Content -->
                                 <div class="phone-screen">
-                                    <!-- Dynamic Image showing the selected App Screen -->
-                                    <img src="assets/draco.jpg" alt="Simulador de App Móvil" class="app-screen-img active" id="phone-screen-img">
+                                    
+                                    <!-- Screen 1: DRACO APP (Interactive Chat) -->
+                                    <div class="app-mock-screen active" id="screen-draco">
+                                        <div class="mock-app-header">
+                                            <span class="mock-app-title">Draco Chat 🐉</span>
+                                            <div class="mock-status-indicators">
+                                                <span class="wifi-dot">●</span>
+                                                <span class="battery-pct">98%</span>
+                                            </div>
+                                        </div>
+                                        <div class="mock-chat-list" id="draco-chat-list">
+                                            <div class="chat-item" onclick="openMockChat('bot')">
+                                                <div class="chat-avatar">🤖</div>
+                                                <div class="chat-msg-info">
+                                                    <h4>Draco Assistant</h4>
+                                                    <p>Hola Jorgensen, ¿cómo te ayudo hoy?</p>
+                                                </div>
+                                            </div>
+                                            <div class="chat-item" onclick="openMockChat('client')">
+                                                <div class="chat-avatar">🍕</div>
+                                                <div class="chat-msg-info">
+                                                    <h4>Pizzería Plaza</h4>
+                                                    <p>Pedido #1204 enviado a cocina</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Active chat viewport (hidden by default) -->
+                                        <div class="mock-chat-view" id="draco-chat-view" style="display: none;">
+                                            <div class="chat-view-header">
+                                                <span class="back-btn" onclick="closeMockChat()">←</span>
+                                                <span id="chat-title">Draco Bot</span>
+                                            </div>
+                                            <div class="chat-messages" id="chat-messages-container">
+                                                <!-- Dynamic bubbles -->
+                                            </div>
+                                            <div class="chat-input-bar">
+                                                <button class="chat-reply-btn" id="btn-reply-1" onclick="sendQuickReply(1)">¿Dónde está mi pedido?</button>
+                                                <button class="chat-reply-btn" id="btn-reply-2" onclick="sendQuickReply(2)">Ver Mapa 🗺️</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Screen 2: PULSE FITNESS (Interactive Workout Tracker) -->
+                                    <div class="app-mock-screen" id="screen-fitness">
+                                        <div class="mock-app-header dark-header">
+                                            <span class="mock-app-title">Pulse Fit ⚡</span>
+                                        </div>
+                                        <div class="fitness-screen-content">
+                                            <div class="fitness-circle">
+                                                <div class="fitness-circle-inner">
+                                                    <span class="fitness-stat-val" id="kcal-val">340</span>
+                                                    <span class="fitness-stat-lbl">KCAL</span>
+                                                </div>
+                                            </div>
+                                            <div class="fitness-row">
+                                                <div class="fit-card">
+                                                    <span>Pasos</span>
+                                                    <strong id="steps-val">6,420</strong>
+                                                </div>
+                                                <div class="fit-card">
+                                                    <span>Ritmo</span>
+                                                    <strong>115 lpm</strong>
+                                                </div>
+                                            </div>
+                                            <button class="btn btn-primary btn-block btn-mock-pulse" id="btn-start-workout" onclick="toggleWorkoutTimer()">
+                                                Iniciar Cardio
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Screen 3: AURA SMART HOME (Interactive IoT switches) -->
+                                    <div class="app-mock-screen" id="screen-smarthome">
+                                        <div class="mock-app-header">
+                                            <span class="mock-app-title">Aura Home 🏠</span>
+                                        </div>
+                                        <div class="smarthome-screen-content">
+                                            <div class="temp-control-wheel">
+                                                <button onclick="changeAC(-1)">-</button>
+                                                <div class="temp-display">
+                                                    <span class="temp-num" id="temp-val">22</span>
+                                                    <span class="temp-unit">°C</span>
+                                                </div>
+                                                <button onclick="changeAC(1)">+</button>
+                                            </div>
+                                            <div class="smart-switches-grid">
+                                                <div class="switch-card" id="sw-light" onclick="toggleSwitch('light')">
+                                                    <span class="sw-icon">💡</span>
+                                                    <span>Luces Sala</span>
+                                                    <strong class="sw-status off">OFF</strong>
+                                                </div>
+                                                <div class="switch-card" id="sw-lock" onclick="toggleSwitch('lock')">
+                                                    <span class="sw-icon">🔒</span>
+                                                    <span>Chapa Inteligente</span>
+                                                    <strong class="sw-status on">ON</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Screen 4: VIBE STORE (Interactive Clothing & Sneakers Shop) -->
+                                    <div class="app-mock-screen" id="screen-store">
+                                        <div class="mock-app-header">
+                                            <span class="mock-app-title">Vibe Store 👟</span>
+                                            <div class="mock-cart-badge" onclick="toggleCartPopup()">
+                                                🛒 <span id="cart-count">0</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Category Pills -->
+                                        <div class="store-categories">
+                                            <span class="cat-pill active" onclick="filterStore('all')">Todos</span>
+                                            <span class="cat-pill" onclick="filterStore('sneakers')">Sneakers</span>
+                                            <span class="cat-pill" onclick="filterStore('clothes')">Ropa</span>
+                                        </div>
+
+                                        <!-- Product Grid -->
+                                        <div class="store-products" id="store-products-list">
+                                            <div class="prod-card" data-cat="sneakers">
+                                                <div class="prod-emoji">👟</div>
+                                                <h5>Jordan Retro</h5>
+                                                <span>$150 USD</span>
+                                                <button onclick="addToMockCart('Jordan Retro', 150)">Añadir</button>
+                                            </div>
+                                            <div class="prod-card" data-cat="clothes">
+                                                <div class="prod-emoji">Oversized Hoodie</div>
+                                                <h5>Hoodie Vibe</h5>
+                                                <span>$80 USD</span>
+                                                <button onclick="addToMockCart('Hoodie Vibe', 80)">Añadir</button>
+                                            </div>
+                                            <div class="prod-card" data-cat="sneakers">
+                                                <div class="prod-emoji">🥾</div>
+                                                <h5>Air Max 90</h5>
+                                                <span>$120 USD</span>
+                                                <button onclick="addToMockCart('Air Max 90', 120)">Añadir</button>
+                                            </div>
+                                            <div class="prod-card" data-cat="clothes">
+                                                <div class="prod-emoji">👕</div>
+                                                <h5>T-Shirt Oversized</h5>
+                                                <span>$45 USD</span>
+                                                <button onclick="addToMockCart('T-Shirt Over', 45)">Añadir</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- Mini Cart Popup -->
+                                        <div class="mock-cart-popup" id="mock-cart-popup" style="display: none;">
+                                            <h4>Tu Carrito</h4>
+                                            <div class="cart-items-list" id="cart-items-list">
+                                                <p class="empty-cart-text">El carrito está vacío.</p>
+                                            </div>
+                                            <div class="cart-total-row">
+                                                <span>Total:</span>
+                                                <strong id="cart-total-val">$0 USD</strong>
+                                            </div>
+                                            <button class="checkout-btn" onclick="mockCheckout()">Finalizar Pedido</button>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

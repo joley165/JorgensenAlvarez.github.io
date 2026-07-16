@@ -196,22 +196,22 @@ document.addEventListener('DOMContentLoaded', () => {
        5. SIMULADOR DE APLICACIONES MÓVILES INTERACTIVO
        -------------------------------------------------------------------------- */
     const appOptions = document.querySelectorAll('.app-option');
-    const phoneScreenImg = document.getElementById('phone-screen-img');
     const phoneGlow = document.querySelector('.phone-glow');
+    const appMockScreens = document.querySelectorAll('.app-mock-screen');
 
-    // Mapping apps to asset paths and glowing box-shadow colors
+    // Mapping apps to glowing box-shadow colors
     const appData = {
         draco: {
-            img: 'assets/draco.jpg',
             glowColor: 'radial-gradient(circle, hsla(270, 100%, 65%, 0.25) 0%, transparent 70%)'
         },
         fitness: {
-            img: 'assets/fitness.jpg',
             glowColor: 'radial-gradient(circle, hsla(340, 100%, 60%, 0.25) 0%, transparent 70%)'
         },
         smarthome: {
-            img: 'assets/smart_home.jpg',
             glowColor: 'radial-gradient(circle, hsla(180, 100%, 48%, 0.25) 0%, transparent 70%)'
+        },
+        store: {
+            glowColor: 'radial-gradient(circle, hsla(150, 100%, 48%, 0.25) 0%, transparent 70%)'
         }
     };
 
@@ -227,28 +227,194 @@ document.addEventListener('DOMContentLoaded', () => {
             const appId = option.getAttribute('data-app');
             const selectedApp = appData[appId];
 
-            if (selectedApp && phoneScreenImg) {
-                // Crossfade animation by fading out first
-                phoneScreenImg.style.opacity = '0';
-                phoneScreenImg.style.transform = 'scale(0.98)';
-                
-                setTimeout(() => {
-                    // Update Image Source
-                    phoneScreenImg.src = selectedApp.img;
-                    phoneScreenImg.alt = `Simulador de App - ${option.querySelector('h3').innerText}`;
-                    
-                    // Fade in new screen
-                    phoneScreenImg.style.opacity = '1';
-                    phoneScreenImg.style.transform = 'scale(1)';
-                    
-                    // Update backglow shadow color matches app theme color
-                    if (phoneGlow) {
-                        phoneGlow.style.background = selectedApp.glowColor;
-                    }
-                }, 200);
+            // Hide all screen contents
+            appMockScreens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show active screen content with scale animation
+            const activeScreen = document.getElementById(`screen-${appId}`);
+            if (activeScreen) {
+                activeScreen.classList.add('active');
+            }
+            
+            // Update backglow shadow color matches app theme color
+            if (selectedApp && phoneGlow) {
+                phoneGlow.style.background = selectedApp.glowColor;
             }
         });
     });
+
+    // 5b. INTERACTION LOGIC FOR PHONE MOCK SCREENS
+    // Draco Chat screen functions
+    window.openMockChat = function(type) {
+        const chatView = document.getElementById('draco-chat-view');
+        const chatTitle = document.getElementById('chat-title');
+        const msgContainer = document.getElementById('chat-messages-container');
+        
+        chatView.style.display = 'flex';
+        msgContainer.innerHTML = '';
+        
+        if (type === 'bot') {
+            chatTitle.innerText = "Draco Assistant 🤖";
+            msgContainer.innerHTML = `
+                <div class="chat-msg received">¡Hola! Soy el asistente virtual de Draco. ¿Deseas ver una simulación de entrega con mapa o hacer una pregunta?</div>
+            `;
+        } else {
+            chatTitle.innerText = "Pizzería Plaza 🍕";
+            msgContainer.innerHTML = `
+                <div class="chat-msg received">Hola Jorgensen, tu pedido de Pizza Familiar ya fue preparado y está en camino con el motorizado.</div>
+            `;
+        }
+    };
+
+    window.closeMockChat = function() {
+        document.getElementById('draco-chat-view').style.display = 'none';
+    };
+
+    window.sendQuickReply = function(id) {
+        const msgContainer = document.getElementById('chat-messages-container');
+        if (id === 1) {
+            msgContainer.innerHTML += `
+                <div class="chat-msg sent">¿Dónde está mi pedido?</div>
+                <div class="chat-msg received">El motorizado se encuentra en Av. Larco 410, estimamos la entrega en 3 minutos. 🗺️</div>
+            `;
+        } else {
+            msgContainer.innerHTML += `
+                <div class="chat-msg sent">Ver Mapa 🗺️</div>
+                <div class="chat-msg received">
+                    <div class="mock-map">
+                        <div class="mock-map-marker">📍</div>
+                    </div>
+                </div>
+            `;
+        }
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+    };
+
+    // Fitness Timer state
+    let workoutInterval = null;
+    let kcalVal = 340;
+    let stepsVal = 6420;
+    window.toggleWorkoutTimer = function() {
+        const btn = document.getElementById('btn-start-workout');
+        const kcalEl = document.getElementById('kcal-val');
+        const stepsEl = document.getElementById('steps-val');
+        
+        if (workoutInterval) {
+            clearInterval(workoutInterval);
+            workoutInterval = null;
+            btn.innerText = "Iniciar Cardio";
+            btn.style.background = "var(--grad-primary)";
+        } else {
+            btn.innerText = "Detener Cardio";
+            btn.style.background = "#d90429";
+            workoutInterval = setInterval(() => {
+                kcalVal += 1;
+                stepsVal += Math.floor(Math.random() * 4) + 1;
+                kcalEl.innerText = kcalVal;
+                stepsEl.innerText = stepsVal.toLocaleString();
+            }, 1000);
+        }
+    };
+
+    // Smart Home state
+    let currentTemp = 22;
+    window.changeAC = function(val) {
+        currentTemp += val;
+        if (currentTemp < 16) currentTemp = 16;
+        if (currentTemp > 30) currentTemp = 30;
+        document.getElementById('temp-val').innerText = currentTemp;
+    };
+
+    window.toggleSwitch = function(name) {
+        const card = document.getElementById(`sw-${name}`);
+        const status = card.querySelector('.sw-status');
+        if (status.classList.contains('on')) {
+            status.classList.remove('on');
+            status.classList.add('off');
+            status.innerText = "OFF";
+            if (name === 'light') {
+                card.style.background = "hsla(215, 10%, 8%, 0.6)";
+            }
+        } else {
+            status.classList.remove('off');
+            status.classList.add('on');
+            status.innerText = "ON";
+            if (name === 'light') {
+                card.style.background = "hsla(50, 100%, 50%, 0.12)";
+            }
+        }
+    };
+
+    // Vibe Store Cart State
+    let mockCart = [];
+    window.addToMockCart = function(name, price) {
+        mockCart.push({ name, price });
+        document.getElementById('cart-count').innerText = mockCart.length;
+        
+        const badge = document.querySelector('.mock-cart-badge');
+        badge.classList.add('bounce');
+        setTimeout(() => badge.classList.remove('bounce'), 300);
+        
+        updateCartPopup();
+    };
+
+    window.toggleCartPopup = function() {
+        const popup = document.getElementById('mock-cart-popup');
+        popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+    };
+
+    function updateCartPopup() {
+        const list = document.getElementById('cart-items-list');
+        const totalVal = document.getElementById('cart-total-val');
+        
+        if (mockCart.length === 0) {
+            list.innerHTML = `<p class="empty-cart-text">El carrito está vacío.</p>`;
+            totalVal.innerText = `$0 USD`;
+        } else {
+            list.innerHTML = mockCart.map(item => `
+                <div class="mock-cart-item">
+                    <span>${item.name}</span>
+                    <strong>$${item.price} USD</strong>
+                </div>
+            `).join('');
+            
+            const total = mockCart.reduce((sum, item) => sum + item.price, 0);
+            totalVal.innerText = `$${total} USD`;
+        }
+    }
+
+    window.filterStore = function(category) {
+        const pills = document.querySelectorAll('.cat-pill');
+        pills.forEach(pill => {
+            pill.classList.remove('active');
+            if (pill.innerText.toLowerCase() === category || (category === 'all' && pill.innerText.toLowerCase() === 'todos')) {
+                pill.classList.add('active');
+            }
+        });
+        
+        const products = document.querySelectorAll('.prod-card');
+        products.forEach(prod => {
+            if (category === 'all' || prod.getAttribute('data-cat') === category) {
+                prod.style.display = 'flex';
+            } else {
+                prod.style.display = 'none';
+            }
+        });
+    };
+
+    window.mockCheckout = function() {
+        if (mockCart.length === 0) {
+            alert('¡Agrega productos al carrito primero!');
+            return;
+        }
+        alert('🛍️ ¡Pedido de Tienda Recibido! Tu compra de zapatillas/ropa ha sido simulada exitosamente.');
+        mockCart = [];
+        document.getElementById('cart-count').innerText = 0;
+        updateCartPopup();
+        window.toggleCartPopup();
+    };
 
     /* --------------------------------------------------------------------------
        6. FORMULARIO DE CONTACTO PREMUM E INTERACTIVO
