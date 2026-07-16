@@ -353,6 +353,137 @@ document.addEventListener('DOMContentLoaded', () => {
             rootMargin: '0px 0px -50px 0px'
         });
 
-        reveals.forEach(el => revealObserver.observe(el));
+         reveals.forEach(el => revealObserver.observe(el));
     }
+
+    /* --------------------------------------------------------------------------
+       9. COTIZADOR DE PROYECTOS INTERACTIVO
+       -------------------------------------------------------------------------- */
+    const screensRange = document.getElementById('screens-range');
+    const screensVal = document.getElementById('screens-val');
+    const totalPriceEl = document.getElementById('total-price');
+    const deliveryTimeEl = document.getElementById('delivery-time');
+    const platformSelectedEl = document.getElementById('platform-selected');
+    const featuresSelectedEl = document.getElementById('features-selected');
+    const btnCalcWhatsapp = document.getElementById('btn-calc-whatsapp');
+
+    function calculateProject() {
+        if (!screensRange) return;
+
+        // 1. Base prices & weeks by platform
+        const platformValue = document.querySelector('input[name="platform"]:checked').value;
+        let basePrice = 0;
+        let baseWeeks = 0;
+        let platformLabel = "";
+
+        if (platformValue === 'android') {
+            basePrice = 1200;
+            baseWeeks = 3;
+            platformLabel = "Android Nativo";
+        } else if (platformValue === 'ios') {
+            basePrice = 1200;
+            baseWeeks = 3;
+            platformLabel = "iOS Nativo";
+        } else {
+            basePrice = 1800;
+            baseWeeks = 4;
+            platformLabel = "React Native (iOS & Android)";
+        }
+
+        // 2. Screens calculation (each screen adds $90 and approx 1.5 days)
+        const screens = parseInt(screensRange.value);
+        screensVal.innerText = `${screens} pantallas`;
+        
+        const screensPrice = screens * 90;
+        const screensWeeks = Math.ceil(screens * 0.22); 
+
+        // 3. Features calculation
+        let featuresPrice = 0;
+        let featuresWeeks = 0;
+        let selectedFeaturesList = [];
+
+        const checkboxes = document.querySelectorAll('.feature-checkbox');
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                if (cb.value === 'maps') {
+                    featuresPrice += 400;
+                    featuresWeeks += 1;
+                    selectedFeaturesList.push("Mapas/Geolocalización");
+                } else if (cb.value === 'chat') {
+                    featuresPrice += 500;
+                    featuresWeeks += 1;
+                    selectedFeaturesList.push("Chat en vivo");
+                } else if (cb.value === 'auth') {
+                    featuresPrice += 250;
+                    featuresWeeks += 0.5;
+                    selectedFeaturesList.push("Autenticación");
+                } else if (cb.value === 'push') {
+                    featuresPrice += 150;
+                    featuresWeeks += 0.5;
+                    selectedFeaturesList.push("Notificaciones Push");
+                } else if (cb.value === 'dashboard') {
+                    featuresPrice += 600;
+                    featuresWeeks += 1.5;
+                    selectedFeaturesList.push("Panel de Admin");
+                }
+            }
+        });
+
+        // 4. Summarize calculations
+        const totalPrice = basePrice + screensPrice + featuresPrice;
+        const totalWeeks = baseWeeks + screensWeeks + Math.ceil(featuresWeeks);
+
+        // 5. Update UI
+        totalPriceEl.innerText = `$${totalPrice} USD`;
+        deliveryTimeEl.innerText = `${totalWeeks} semanas`;
+        platformSelectedEl.innerText = platformLabel;
+        featuresSelectedEl.innerText = selectedFeaturesList.length > 0 ? selectedFeaturesList.join(', ') : 'Ninguna';
+
+        // 6. Format WhatsApp Message Link
+        const whatsAppPhone = "51925074274";
+        const featuresText = selectedFeaturesList.length > 0 ? selectedFeaturesList.join(', ') : 'Ninguna';
+        const messageText = `Hola Jorgensen! Coticé una aplicación en tu portafolio web:\n\n` +
+                            `- *Plataforma:* ${platformLabel}\n` +
+                            `- *Pantallas:* ${screens}\n` +
+                            `- *Funcionalidades:* ${featuresText}\n\n` +
+                            `*Presupuesto Estimado:* $${totalPrice} USD\n` +
+                            `*Tiempo Estimado:* ${totalWeeks} semanas\n\n` +
+                            `Me gustaría agendar una reunión para discutir los detalles de mi proyecto.`;
+        
+        btnCalcWhatsapp.href = `https://wa.me/${whatsAppPhone}?text=${encodeURIComponent(messageText)}`;
+    }
+
+    // Attach event listeners to all calculator inputs
+    if (screensRange) {
+        screensRange.addEventListener('input', calculateProject);
+        
+        const platformRadios = document.querySelectorAll('input[name="platform"]');
+        platformRadios.forEach(radio => radio.addEventListener('change', calculateProject));
+
+        const featureCheckboxes = document.querySelectorAll('.feature-checkbox');
+        featureCheckboxes.forEach(cb => cb.addEventListener('change', calculateProject));
+
+        // Run initial calculation on load
+        calculateProject();
+    }
+
+    /* --------------------------------------------------------------------------
+       10. EFECTO DE INCLINACIÓN 3D EN TARJETAS (Tilt Hover Effect)
+       -------------------------------------------------------------------------- */
+    const tiltElements = document.querySelectorAll('.hero-profile-card, .service-card');
+    tiltElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const xc = rect.width / 2;
+            const yc = rect.height / 2;
+            const angleX = (yc - y) / 14; 
+            const angleY = (x - xc) / 14;
+            el.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-5px)`;
+        });
+        el.addEventListener('mouseleave', () => {
+            el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+        });
+    });
 });

@@ -1653,3 +1653,303 @@ body {
     }
 }
 
+/* --------------------------------------------------------------------------
+   11. INTERACTIVE ESTIMATOR / CALCULATOR SECTION
+   -------------------------------------------------------------------------- */
+.calculator-section {
+    padding: 100px 0;
+    position: relative;
+    background: linear-gradient(180deg, hsla(215, 35%, 3%, 0.5) 0%, var(--bg-dark) 100%);
+}
+
+.calculator-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 32px;
+    padding: 40px;
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow-card);
+}
+
+.calc-options {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.calc-step h3 {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #fff;
+}
+
+/* Step 1: Platform selector cards */
+.platform-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.platform-card {
+    cursor: pointer;
+    position: relative;
+}
+
+.platform-card input[type="radio"] {
+    display: none;
+}
+
+.platform-card-content {
+    background: hsla(215, 10%, 8%, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: var(--tr-fast);
+    height: 100%;
+}
+
+.platform-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.platform-card-content h4 {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.platform-card-content p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+}
+
+/* Radio button check effects */
+.platform-card input[type="radio"]:checked + .platform-card-content {
+    background: hsla(210, 100%, 55%, 0.08);
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 15px hsla(210, 100%, 55%, 0.15);
+}
+
+/* Step 2: Slider styling */
+.screens-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.screens-count {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-teal);
+    background: hsla(190, 100%, 46%, 0.1);
+    padding: 4px 12px;
+    border-radius: 8px;
+    border: 1px solid hsla(190, 100%, 46%, 0.2);
+}
+
+.slider-container {
+    padding: 8px 0;
+}
+
+.calc-range-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 100px;
+    background: var(--border-color);
+    outline: none;
+}
+
+.calc-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--grad-primary);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-teal);
+    transition: transform 0.1s ease-in-out;
+}
+
+.calc-range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+
+/* Step 3: Checkbox design */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.feature-checkbox-label {
+    cursor: pointer;
+}
+
+.feature-checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.feature-checkbox-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: hsla(215, 10%, 8%, 0.7);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: var(--tr-fast);
+}
+
+.feature-cb-icon {
+    font-size: 1.2rem;
+}
+
+.feature-checkbox-content span:last-child {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* Checkbox Checked Effect */
+.feature-checkbox-label input[type="checkbox"]:checked + .feature-checkbox-content {
+    background: hsla(190, 100%, 46%, 0.08);
+    border-color: var(--accent-teal);
+    box-shadow: 0 0 10px hsla(190, 100%, 46%, 0.1);
+}
+
+.feature-checkbox-label input[type="checkbox"]:checked + .feature-checkbox-content span:last-child {
+    color: #fff;
+}
+
+/* Results panel card styling */
+.calc-result {
+    position: relative;
+    background: hsla(215, 25%, 6%, 0.85);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.result-glow {
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, hsla(190, 100%, 46%, 0.15) 0%, transparent 70%);
+    filter: blur(15px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.result-header {
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.result-header h4 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.price-val {
+    font-family: var(--font-heading);
+    font-size: 2.6rem;
+    font-weight: 850;
+    background: var(--grad-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+}
+
+.result-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.result-detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.result-detail-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.result-detail-item span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.result-detail-item strong {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.calc-disclaimer {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 14px;
+}
+
+@media (max-width: 1024px) {
+    .calculator-container {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .platform-selector {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
