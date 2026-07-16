@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jorgensen Alvarez | Experto en Android Studio, Xcode y React Native</title>
+    <meta name="description" content="Portafolio profesional de Jorgensen Alvarez, desarrollador experto en Android Studio, Xcode y React Native. Creador de la aplicación móvil Draco.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-progress"></div>
+
+    <!-- Background Canvas for Interactive Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header Navigation -->
+    <header class="main-header" id="main-header">
+        <div class="header-container">
+            <a href="#" class="logo" id="logo-link">
+                <span class="logo-dot"></span>
+                <span class="logo-text">Jorgensen<span>Alvarez</span></span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <ul>
+                    <li><a href="#hero" class="nav-link active" id="link-hero">Inicio</a></li>
+                    <li><a href="#portfolio" class="nav-link" id="link-portfolio">Simulador</a></li>
+                    <li><a href="#services" class="nav-link" id="link-services">Servicios</a></li>
+                    <li><a href="#contact" class="nav-link" id="link-contact">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-cta">
+                <a href="#contact" class="btn btn-secondary" id="cta-header">Empezar Proyecto</a>
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="badge" id="hero-badge">Disponible para nuevos proyectos</span>
+                    <h1 class="hero-title" id="hero-main-title">
+                        Aplicaciones Móviles con <br>
+                        <span class="gradient-text">Android Studio, Xcode & React Native</span>
+                    </h1>
+                    <p class="hero-description" id="hero-desc">
+                        Hola, soy <strong>Jorgensen Alvarez</strong>. Transformo ideas en aplicaciones móviles estables y de alto rendimiento utilizando principalmente <strong>Android Studio</strong> y <strong>Xcode</strong> en nativo, así como <strong>React Native</strong> para soluciones multiplataforma rápidas y optimizadas.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn btn-primary" id="btn-hero-portfolio">Probar simulador</a>
+                        <a href="#contact" class="btn btn-outline" id="btn-hero-contact">Ver contacto</a>
+                    </div>
+                    
+                    <div class="hero-skills-overview">
+                        <!-- Android Studio (Primary) -->
+                        <div class="skill-overview-item primary">
+                            <div class="skill-logo-wrap android">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 10a8 8 0 0 1 16 0v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-7z" fill="hsla(145, 80%, 48%, 0.15)" stroke="hsl(145, 80%, 48%)"/>
+                                    <circle cx="8" cy="11" r="1.5" fill="hsl(145, 80%, 48%)"/>
+                                    <circle cx="16" cy="11" r="1.5" fill="hsl(145, 80%, 48%)"/>
+                                    <path d="M6 3l2 3M18 3l-2 3" stroke="hsl(145, 80%, 48%)" stroke-linecap="round"/>
+                                    <rect x="9" y="14" width="6" height="2" rx="0.5" fill="hsl(145, 80%, 48%)"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h4>Android Studio</h4>
+                                <span>Principal</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Xcode (Primary) -->
+                        <div class="skill-overview-item primary">
+                            <div class="skill-logo-wrap xcode">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="3" fill="hsla(210, 100%, 55%, 0.15)" stroke="hsl(210, 100%, 55%)"/>
+                                    <line x1="3" y1="9" x2="21" y2="9" stroke="hsl(210, 100%, 55%, 0.5)"/>
+                                    <line x1="3" y1="15" x2="21" y2="15" stroke="hsl(210, 100%, 55%, 0.5)"/>
+                                    <line x1="9" y1="3" x2="9" y2="21" stroke="hsl(210, 100%, 55%, 0.5)"/>
+                                    <line x1="15" y1="3" x2="15" y2="21" stroke="hsl(210, 100%, 55%, 0.5)"/>
+                                    <path d="M15 6l3 3-9 9-3-3 9-9z" fill="hsl(210, 100%, 55%)" stroke="hsl(210, 100%, 55%)"/>
+                                    <path d="M16 5l3 3M7 14l3 3" stroke="#fff"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h4>Xcode</h4>
+                                <span>Principal</span>
+                            </div>
+                        </div>
+
+                        <!-- React Native (Opcional) -->
+                        <div class="skill-overview-item optional">
+                            <div class="skill-logo-wrap react-native">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <circle cx="12" cy="12" r="1.5" fill="hsl(195, 100%, 50%)"/>
+                                    <ellipse cx="12" cy="12" rx="9" ry="3.5" stroke="hsl(195, 100%, 50%)" />
+                                    <ellipse cx="12" cy="12" rx="9" ry="3.5" stroke="hsl(195, 100%, 50%)" transform="rotate(60 12 12)"/>
+                                    <ellipse cx="12" cy="12" rx="9" ry="3.5" stroke="hsl(195, 100%, 50%)" transform="rotate(120 12 12)"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h4>React Native</h4>
+                                <span>Opcional</span>
+                            </div>
+                        </div>
+
+                        <!-- Antigravity (Opcional) -->
+                        <div class="skill-overview-item optional">
+                            <div class="skill-logo-wrap antigravity">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 21V3m0 0l-5 5m5-5l5 5" stroke="hsl(270, 100%, 65%)" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="8" stroke="hsl(270, 100%, 65%)" stroke-dasharray="4 2"/>
+                                    <path d="M5 16a7.5 7.5 0 0 1 14 0" stroke="hsl(270, 100%, 65%)" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="skill-info">
+                                <h4>Antigravity</h4>
+                                <span>Opcional</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="glow-sphere main-glow"></div>
+                    <div class="glow-sphere secondary-glow"></div>
+                    <!-- Glowing frame containing portrait image -->
+                    <div class="hero-profile-container">
+                        <div class="hero-profile-glow"></div>
+                        <div class="hero-profile-card">
+                            <img src="assets/jorgensen.jpg" alt="Jorgensen Alvarez - Mobile Developer Expert" class="hero-profile-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio (Interactive App Simulator) -->
+        <section id="portfolio" class="portfolio-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Simulador Interactivo</span>
+                    <h2 class="section-title">Prueba mis creaciones</h2>
+                    <p class="section-description">
+                        Explora la interfaz de aplicaciones reales y conceptos interactivos. Haz clic en las opciones para interactuar con la pantalla del simulador.
+                    </p>
+                </div>
+
+                <div class="simulator-layout reveal">
+                    <!-- App Selector Column -->
+                    <div class="simulator-controls" id="simulator-controls">
+                        
+                        <!-- App Option 1: DRACO -->
+                        <div class="app-option active" data-app="draco" id="opt-draco">
+                            <div class="app-option-icon draco-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
+                                </svg>
+                            </div>
+                            <div class="app-option-details">
+                                <h3>Draco</h3>
+                                <p class="app-tagline">Ventas y Gestión para Pequeños Negocios</p>
+                                <p class="app-desc-short">Una solución integral para restaurantes, hoteles y discotecas. Permite gestionar pedidos mediante chat interactivo con geolocalización en tiempo real, marketplace y perfiles locales.</p>
+                                
+                                <div class="app-downloads-badges">
+                                    <a href="https://apps.apple.com/app/draco/id6479836376" target="_blank" rel="noopener" class="download-badge ios-badge-link" title="Descargar en App Store">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-.96.04-2.13.64-2.82 1.45-.6.69-1.12 1.83-.98 2.94 1.07.08 2.15-.52 2.81-1.33z"/></svg> App Store
+                                    </a>
+                                    <a href="https://play.google.com/store/apps/details?id=com.draco.app" target="_blank" rel="noopener" class="download-badge play-badge-link" title="Descargar en Google Play">
+                                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.277c0-.987.808-1.722 1.74-1.61L18.91 5.3c.75.088 1.09.957.567 1.48L13.5 12.75 3 5.277zm10.5 7.473l5.977 5.978c.523.523.183 1.392-.567 1.48l-14.17 1.633c-.932.112-1.74-.623-1.74-1.61L3 12.75l10.5 0zm.833-.833l7.98-7.98c.5-.5.5-1.3 0-1.8l-.5-.5c-.5-.5-1.3-.5-1.8 0l-7.98 7.98.8 1.5 1.5.8z"/></svg> Google Play
+                                    </a>
+                                </div>
+
+                                <div class="tech-tags">
+                                    <span>Android Studio</span>
+                                    <span>Xcode</span>
+                                    <span>React Native</span>
+                                    <span>Real-Time Chat</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- App Option 2 -->
+                        <div class="app-option" data-app="fitness" id="opt-fitness">
+                            <div class="app-option-icon fitness-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 0 0 .495-7.467 5.99 5.99 0 0 0-1.925 3.546 5.974 5.974 0 0 1-2.133-1A3.75 3.75 0 0 0 12 18Z" />
+                                </svg>
+                            </div>
+                            <div class="app-option-details">
+                                <h3>Pulse Fitness</h3>
+                                <p class="app-tagline">Seguimiento de actividad y hábitos saludables</p>
+                                <p class="app-desc-short">Integración con sensores biométricos, anillos de actividad diaria, planes de entrenamiento dinámicos y estadísticas de rendimiento.</p>
+                                <div class="tech-tags">
+                                    <span>Kotlin Compose</span>
+                                    <span>HealthKit</span>
+                                    <span>Room DB</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- App Option 3 -->
+                        <div class="app-option" data-app="smarthome" id="opt-smarthome">
+                            <div class="app-option-icon smarthome-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                </svg>
+                            </div>
+                            <div class="app-option-details">
+                                <h3>Aura Smart Home</h3>
+                                <p class="app-tagline">Control total de hogar inteligente</p>
+                                <p class="app-desc-short">Interfaz intuitiva para control térmico, iluminación inteligente, cerraduras remotas y monitoreo de cámaras de seguridad en vivo.</p>
+                                <div class="tech-tags">
+                                    <span>Flutter</span>
+                                    <span>MQTT IoT</span>
+                                    <span>Firebase RTDB</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Simulator Device Screen Column -->
+                    <div class="simulator-display">
+                        <div class="phone-frame-wrapper">
+                            <!-- Glowing background highlights -->
+                            <div class="phone-glow"></div>
+                            
+                            <!-- Phone Bezel & Notch -->
+                            <div class="phone-bezel">
+                                <div class="phone-camera-island"></div>
+                                <div class="phone-speaker"></div>
+                                
+                                <!-- Phone Screen Content -->
+                                <div class="phone-screen">
+                                    <!-- Dynamic Image showing the selected App Screen -->
+                                    <img src="assets/draco.jpg" alt="Simulador de App Móvil" class="app-screen-img active" id="phone-screen-img">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services & Tech Stack -->
+        <section id="services" class="services-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Qué Ofrezco</span>
+                    <h2 class="section-title">Servicios especializados</h2>
+                    <p class="section-description">
+                        Ayudo a empresas y emprendedores a conceptualizar, diseñar y programar soluciones móviles robustas que destaquen en la App Store y Google Play.
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Service 1: Android Studio -->
+                    <div class="service-card reveal" id="svc-android">
+                        <div class="service-icon">
+                            <span class="icon-wrap">🤖</span>
+                        </div>
+                        <h3>Ecosistema Android Studio</h3>
+                        <p>Desarrollo nativo de alto nivel con Kotlin y Java en Android Studio. Implementación de servicios de fondo, geolocalización avanzada, notificaciones push personalizadas y optimización de batería.</p>
+                    </div>
+
+                    <!-- Service 2: Xcode -->
+                    <div class="service-card reveal" id="svc-ios">
+                        <div class="service-icon">
+                            <span class="icon-wrap">🛠️</span>
+                        </div>
+                        <h3>Ecosistema Xcode</h3>
+                        <p>Desarrollo nativo para iOS con Swift y Objective-C en Xcode. Integración fluida de frameworks de Apple (Apple Pay, HealthKit, PushKit) y publicación exitosa en App Store Connect.</p>
+                    </div>
+
+                    <!-- Service 3: React Native -->
+                    <div class="service-card reveal" id="svc-crossplatform">
+                        <div class="service-icon">
+                            <span class="icon-wrap">⚡</span>
+                        </div>
+                        <h3>Desarrollo React Native</h3>
+                        <p>Desarrollo híbrido multiplataforma optimizado al final de la cadena de flujos. Un solo código base robusto escrito en TypeScript para conseguir rendimiento casi nativo, despliegues rápidos y consistente UI/UX en iOS y Android.</p>
+                    </div>
+
+                    <!-- Service 4: Backend -->
+                    <div class="service-card reveal" id="svc-backend">
+                        <div class="service-icon">
+                            <span class="icon-wrap">🔌</span>
+                        </div>
+                        <h3>Integración API & Backend</h3>
+                        <p>Conexión segura de las aplicaciones con servicios en la nube. Experiencia implementando RESTful APIs, GraphQL, sockets en tiempo real y bases de datos locales/remotas (Firebase, Postgres, SQLite).</p>
+                    </div>
+                </div>
+
+                <!-- Technical Skills Badges -->
+                <div class="tech-stack-showcase reveal">
+                    <h3>Tecnologías y herramientas</h3>
+                    <div class="badges-container">
+                        <span class="tech-badge">Android Studio</span>
+                        <span class="tech-badge">Xcode</span>
+                        <span class="tech-badge">React Native</span>
+                        <span class="tech-badge">Swift</span>
+                        <span class="tech-badge">Kotlin</span>
+                        <span class="tech-badge">TypeScript</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Firebase</span>
+                        <span class="tech-badge">Redux Toolkit</span>
+                        <span class="tech-badge">App Store Connect</span>
+                        <span class="tech-badge">Google Play Console</span>
+                        <span class="tech-badge">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <div class="contact-layout reveal">
+                    
+                    <!-- Contact Info Block -->
+                    <div class="contact-info">
+                        <span class="section-subtitle">Hablemos</span>
+                        <h2 class="section-title">¿Tienes una gran idea para una aplicación?</h2>
+                        <p class="contact-desc">
+                            Estoy listo para llevar tu visión al siguiente nivel. Ya sea que necesites una app desde cero o desees mejorar una existente, ponte en contacto conmigo para discutir el proyecto.
+                        </p>
+                        
+                        <div class="contact-methods">
+                            <div class="method-item" id="method-email">
+                                <div class="method-icon">✉️</div>
+                                <div class="method-details">
+                                    <span>Escríbeme por correo</span>
+                                    <a href="mailto:jorgeluisalvarezpingo@hotmail.com" class="method-link">jorgeluisalvarezpingo@hotmail.com</a>
+                                </div>
+                            </div>
+                            <div class="method-item" id="method-phone">
+                                <div class="method-icon">💬</div>
+                                <div class="method-details">
+                                    <span>WhatsApp</span>
+                                    <a href="https://wa.me/51925074274" target="_blank" rel="noopener" class="method-link">+51 925 074 274</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="#" class="social-btn" aria-label="GitHub">GitHub</a>
+                            <a href="#" class="social-btn" aria-label="LinkedIn">LinkedIn</a>
+                            <a href="#" class="social-btn" aria-label="Twitter">Twitter / X</a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Block -->
+                    <div class="contact-form-container">
+                        <form id="portfolio-contact-form" class="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="form-name">Tu Nombre</label>
+                                <input type="text" id="form-name" name="name" placeholder="Ej. Juan Pérez" required>
+                                <span class="error-msg" id="name-error">Por favor, introduce tu nombre</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-email">Tu Correo Electrónico</label>
+                                <input type="email" id="form-email" name="email" placeholder="Ej. juan@correo.com" required>
+                                <span class="error-msg" id="email-error">Por favor, introduce un correo electrónico válido</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-apptype">Tipo de Aplicación Requerida</label>
+                                <select id="form-apptype" name="apptype">
+                                    <option value="android-studio">Android Nativo (Android Studio)</option>
+                                    <option value="xcode">iOS Nativo (Xcode / Swift)</option>
+                                    <option value="react-native">React Native (iOS & Android)</option>
+                                    <option value="other">Otro Proyecto / Consultoría</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-message">Detalles del Proyecto</label>
+                                <textarea id="form-message" name="message" rows="5" placeholder="Cuéntame sobre tu idea, alcance, tiempos y presupuesto estimado..." required></textarea>
+                                <span class="error-msg" id="message-error">Por favor, describe los detalles de tu proyecto</span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block" id="btn-submit-form">
+                                <span class="btn-text">Enviar Mensaje</span>
+                                <span class="spinner" id="form-spinner"></span>
+                            </button>
+                            
+                            <!-- Success State Banner -->
+                            <div class="form-success-banner" id="form-success-banner">
+                                <div class="success-icon">✓</div>
+                                <h4>¡Mensaje Enviado con Éxito!</h4>
+                                <p>Gracias por ponerte en contacto. Responderé a tu correo en menos de 24 horas hábiles.</p>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-container">
+            <p class="footer-copyright">&copy; 2026 Jorgensen Alvarez. Creado con pasión por el desarrollo móvil.</p>
+            <div class="footer-links">
+                <a href="#hero">Inicio</a>
+                <a href="#portfolio">Simulador</a>
+                <a href="#services">Servicios</a>
+                <a href="#contact">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- App Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>
