@@ -204,14 +204,11 @@ document.addEventListener('DOMContentLoaded', () => {
         draco: {
             glowColor: 'radial-gradient(circle, hsla(270, 100%, 65%, 0.25) 0%, transparent 70%)'
         },
-        fitness: {
-            glowColor: 'radial-gradient(circle, hsla(340, 100%, 60%, 0.25) 0%, transparent 70%)'
-        },
-        smarthome: {
-            glowColor: 'radial-gradient(circle, hsla(180, 100%, 48%, 0.25) 0%, transparent 70%)'
-        },
         store: {
             glowColor: 'radial-gradient(circle, hsla(150, 100%, 48%, 0.25) 0%, transparent 70%)'
+        },
+        geoloc: {
+            glowColor: 'radial-gradient(circle, hsla(260, 100%, 55%, 0.25) 0%, transparent 70%)'
         }
     };
 
@@ -292,61 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
         msgContainer.scrollTop = msgContainer.scrollHeight;
     };
 
-    // Fitness Timer state
-    let workoutInterval = null;
-    let kcalVal = 340;
-    let stepsVal = 6420;
-    window.toggleWorkoutTimer = function() {
-        const btn = document.getElementById('btn-start-workout');
-        const kcalEl = document.getElementById('kcal-val');
-        const stepsEl = document.getElementById('steps-val');
-        
-        if (workoutInterval) {
-            clearInterval(workoutInterval);
-            workoutInterval = null;
-            btn.innerText = "Iniciar Cardio";
-            btn.style.background = "var(--grad-primary)";
-        } else {
-            btn.innerText = "Detener Cardio";
-            btn.style.background = "#d90429";
-            workoutInterval = setInterval(() => {
-                kcalVal += 1;
-                stepsVal += Math.floor(Math.random() * 4) + 1;
-                kcalEl.innerText = kcalVal;
-                stepsEl.innerText = stepsVal.toLocaleString();
-            }, 1000);
-        }
-    };
-
-    // Smart Home state
-    let currentTemp = 22;
-    window.changeAC = function(val) {
-        currentTemp += val;
-        if (currentTemp < 16) currentTemp = 16;
-        if (currentTemp > 30) currentTemp = 30;
-        document.getElementById('temp-val').innerText = currentTemp;
-    };
-
-    window.toggleSwitch = function(name) {
-        const card = document.getElementById(`sw-${name}`);
-        const status = card.querySelector('.sw-status');
-        if (status.classList.contains('on')) {
-            status.classList.remove('on');
-            status.classList.add('off');
-            status.innerText = "OFF";
-            if (name === 'light') {
-                card.style.background = "hsla(215, 10%, 8%, 0.6)";
-            }
-        } else {
-            status.classList.remove('off');
-            status.classList.add('on');
-            status.innerText = "ON";
-            if (name === 'light') {
-                card.style.background = "hsla(50, 100%, 50%, 0.12)";
-            }
-        }
-    };
-
     // Vibe Store Cart State
     let mockCart = [];
     window.addToMockCart = function(name, price) {
@@ -414,6 +356,85 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cart-count').innerText = 0;
         updateCartPopup();
         window.toggleCartPopup();
+    };
+
+    // GeoLoc Active Route Demo state
+    let routeInterval = null;
+    let routeDistance = 1.8;
+    let routeTime = 6;
+    window.toggleRouteAnimation = function() {
+        const btn = document.getElementById('btn-start-route');
+        const scooter = document.getElementById('scooter-element');
+        const status = document.getElementById('geoloc-status');
+        const distEl = document.getElementById('geoloc-dist');
+        const timeEl = document.getElementById('geoloc-time');
+
+        if (scooter.style.animationPlayState === 'running') {
+            // Pause
+            scooter.style.animationPlayState = 'paused';
+            btn.innerText = "Reanudar Ruta";
+            status.innerText = "Pausado";
+            status.className = "status-paused";
+            clearInterval(routeInterval);
+            routeInterval = null;
+        } else {
+            // Start
+            scooter.style.animationPlayState = 'running';
+            btn.innerText = "Pausar Ruta";
+            status.innerText = "En ruta";
+            status.className = "status-enroute";
+            
+            routeInterval = setInterval(() => {
+                if (routeDistance > 0.1) {
+                    routeDistance -= 0.1;
+                    routeDistance = parseFloat(routeDistance.toFixed(1));
+                    distEl.innerText = `${routeDistance} km`;
+                    
+                    routeTime = Math.ceil(routeDistance * 3.33); // approx 3.3 min per km
+                    timeEl.innerText = `${routeTime} min`;
+                } else {
+                    // Route complete
+                    clearInterval(routeInterval);
+                    routeInterval = null;
+                    routeDistance = 0.0;
+                    routeTime = 0;
+                    distEl.innerText = "0.0 km";
+                    timeEl.innerText = "0 min";
+                    status.innerText = "Entregado";
+                    status.className = "status-completed";
+                    scooter.style.animationPlayState = 'paused';
+                    btn.innerText = "Completado";
+                    btn.disabled = true;
+                }
+            }, 500);
+        }
+    };
+
+    window.resetRouteAnimation = function() {
+        const btn = document.getElementById('btn-start-route');
+        const scooter = document.getElementById('scooter-element');
+        const status = document.getElementById('geoloc-status');
+        const distEl = document.getElementById('geoloc-dist');
+        const timeEl = document.getElementById('geoloc-time');
+
+        // Reset state
+        clearInterval(routeInterval);
+        routeInterval = null;
+        routeDistance = 1.8;
+        routeTime = 6;
+        distEl.innerText = "1.8 km";
+        timeEl.innerText = "6 min";
+        status.innerText = "Parado";
+        status.className = "status-paused";
+        
+        btn.disabled = false;
+        btn.innerText = "Iniciar Ruta";
+
+        // Reset CSS animation track
+        scooter.style.animation = 'none';
+        void scooter.offsetWidth; // Trigger reflow to apply 'none'
+        scooter.style.animation = null; // Re-apply animation from CSS
+        scooter.style.animationPlayState = 'paused';
     };
 
     /* --------------------------------------------------------------------------

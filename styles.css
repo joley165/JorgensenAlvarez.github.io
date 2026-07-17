@@ -2566,3 +2566,122 @@ body {
     margin-top: 20px;
 }
 
+/* GeoLoc Specific Mock Screen Styles */
+.geoloc-screen-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.geoloc-map-container {
+    flex: 1;
+    min-height: 160px;
+    background: #0f121a;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.svg-map-bg {
+    width: 100%;
+    height: 100%;
+}
+
+.delivery-scooter {
+    font-size: 1.4rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    offset-path: path('M 20 140 C 60 40, 140 160, 180 60');
+    offset-rotate: auto;
+    z-index: 5;
+    animation: followRoutePath 8s linear infinite;
+    animation-play-state: paused;
+}
+
+@keyframes followRoutePath {
+    0% { offset-distance: 0%; }
+    100% { offset-distance: 100%; }
+}
+
+.geoloc-details-card {
+    background: hsla(215, 10%, 8%, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.geoloc-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.geoloc-stat {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.geoloc-stat span {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+}
+
+.geoloc-stat strong {
+    font-size: 0.8rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.geoloc-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-geo {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.72rem;
+    font-weight: 700;
+    background: var(--grad-primary);
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    transition: var(--tr-fast);
+}
+
+.btn-geo.secondary {
+    background: hsla(215, 10%, 14%, 0.8);
+    border: 1px solid var(--border-color);
+    color: #fff;
+}
+
+.btn-geo:hover {
+    filter: brightness(1.1);
+}
+
+.status-enroute {
+    color: #4ea8de;
+}
+
+.status-completed {
+    color: #70e000;
+}
+
+.status-paused {
+    color: #ff9f1c;
+}
+
+
