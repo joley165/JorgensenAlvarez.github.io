@@ -193,56 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', scrollSpy);
 
     /* --------------------------------------------------------------------------
-       5. SIMULADOR DE APLICACIONES MÓVILES INTERACTIVO
+       5. SIMULADOR DE APLICACIONES MÓVILES INTERACTIVO (Demos Activas en Paralelo)
        -------------------------------------------------------------------------- */
-    const appOptions = document.querySelectorAll('.app-option');
-    const phoneGlow = document.querySelector('.phone-glow');
-    const appMockScreens = document.querySelectorAll('.app-mock-screen');
-
-    // Mapping apps to glowing box-shadow colors
-    const appData = {
-        draco: {
-            glowColor: 'radial-gradient(circle, hsla(270, 100%, 65%, 0.25) 0%, transparent 70%)'
-        },
-        store: {
-            glowColor: 'radial-gradient(circle, hsla(150, 100%, 48%, 0.25) 0%, transparent 70%)'
-        },
-        geoloc: {
-            glowColor: 'radial-gradient(circle, hsla(260, 100%, 55%, 0.25) 0%, transparent 70%)'
-        }
-    };
-
-    appOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            // Remove active classes from all options
-            appOptions.forEach(opt => opt.classList.remove('active'));
-            
-            // Add active class to clicked option
-            option.classList.add('active');
-            
-            // Get selected app ID
-            const appId = option.getAttribute('data-app');
-            const selectedApp = appData[appId];
-
-            // Hide all screen contents
-            appMockScreens.forEach(screen => {
-                screen.classList.remove('active');
-            });
-
-            // Show active screen content with scale animation
-            const activeScreen = document.getElementById(`screen-${appId}`);
-            if (activeScreen) {
-                activeScreen.classList.add('active');
-            }
-            
-            // Update backglow shadow color matches app theme color
-            if (selectedApp && phoneGlow) {
-                phoneGlow.style.background = selectedApp.glowColor;
-            }
-        });
-    });
-
-    // 5b. INTERACTION LOGIC FOR PHONE MOCK SCREENS
     // Draco Chat screen functions
     window.openMockChat = function(type) {
         const chatView = document.getElementById('draco-chat-view');
