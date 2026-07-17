@@ -2826,5 +2826,276 @@ body {
     }
 }
 
+/* Upgraded Premium Phone Content Styles */
+
+/* Avatars & Header User Details */
+.gradient-avatar-bot {
+    background: linear-gradient(135deg, #7209b7, #3f37c9) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.gradient-avatar-client {
+    background: linear-gradient(135deg, #ff4d6d, #ff758f) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.chat-header-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-avatar-small {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7209b7, #3f37c9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #fff;
+}
+
+.user-status-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.user-name-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.user-online-status {
+    font-size: 0.55rem;
+    color: #52b788;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.user-online-status::before {
+    content: '●';
+    font-size: 0.5rem;
+    color: #52b788;
+}
+
+.quick-replies-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+/* Vibe Store Premium Products Styles */
+.prod-card {
+    position: relative;
+    overflow: hidden;
+    background: hsla(215, 10%, 8%, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 12px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.prod-tag {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-size: 0.5rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 100px;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 10;
+}
+
+.prod-tag.hot {
+    background: linear-gradient(135deg, #f72585, #7209b7);
+}
+
+.prod-tag.new {
+    background: linear-gradient(135deg, #4cc9f0, #4895ef);
+}
+
+.prod-tag.promo {
+    background: linear-gradient(135deg, #70e000, #38b000);
+}
+
+.prod-tag.trending {
+    background: linear-gradient(135deg, #ff9f1c, #ff4d6d);
+}
+
+.prod-emoji-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: hsla(215, 10%, 15%, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+.prod-card:hover .prod-emoji-wrapper {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.prod-card h5 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 4px 0;
+}
+
+.prod-rating {
+    font-size: 0.5rem;
+    color: #ffd166;
+    margin-bottom: 8px;
+}
+
+.prod-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: auto;
+    gap: 4px;
+}
+
+.prod-price {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--accent-cyan);
+}
+
+.prod-price-row button {
+    padding: 4px 8px;
+    font-size: 0.6rem;
+    font-weight: 700;
+    border-radius: 6px;
+    background: var(--grad-primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: var(--tr-fast);
+}
+
+.prod-price-row button:hover {
+    filter: brightness(1.1);
+}
+
+/* GeoLoc Courier Profile & Pulse Marker Styles */
+.courier-profile {
+    display: flex;
+    align-items: center;
+    background: hsla(215, 10%, 12%, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 8px;
+    margin-bottom: 10px;
+    gap: 8px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.courier-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4ea8de, #560bad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+.courier-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex: 1;
+}
+
+.courier-name {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.courier-vehicle {
+    font-size: 0.5rem;
+    color: var(--text-muted);
+}
+
+.btn-call-courier {
+    background: none;
+    border: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 6px;
+    background: hsla(215, 10%, 20%, 0.6);
+    border-radius: 50%;
+    color: #fff;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-call-courier:hover {
+    background: rgba(82, 183, 136, 0.2);
+    color: #52b788;
+}
+
+/* Pulse on delivery marker */
+.scooter-pulse {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(114, 9, 183, 0.3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: markerPulse 1.5s infinite ease-out;
+}
+
+@keyframes markerPulse {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 0.8;
+    }
+    100% {
+        width: 36px;
+        height: 36px;
+        opacity: 0;
+    }
+}
+
 
 

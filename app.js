@@ -199,22 +199,28 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openMockChat = function(type) {
         const chatView = document.getElementById('draco-chat-view');
         const chatTitle = document.getElementById('chat-title');
+        const chatAvatar = document.getElementById('chat-user-avatar');
         const msgContainer = document.getElementById('chat-messages-container');
         
         chatView.style.display = 'flex';
         msgContainer.innerHTML = '';
         
         if (type === 'bot') {
-            chatTitle.innerText = "Draco Assistant 🤖";
+            chatTitle.innerText = "Draco Assistant";
+            chatAvatar.innerText = "🤖";
+            chatAvatar.style.background = "linear-gradient(135deg, #7209b7, #3f37c9)";
             msgContainer.innerHTML = `
                 <div class="chat-msg received">¡Hola! Soy el asistente virtual de Draco. ¿Deseas ver una simulación de entrega con mapa o hacer una pregunta?</div>
             `;
         } else {
-            chatTitle.innerText = "Pizzería Plaza 🍕";
+            chatTitle.innerText = "Pizzería Plaza";
+            chatAvatar.innerText = "🍕";
+            chatAvatar.style.background = "linear-gradient(135deg, #ff4d6d, #ff758f)";
             msgContainer.innerHTML = `
                 <div class="chat-msg received">Hola Jorgensen, tu pedido de Pizza Familiar ya fue preparado y está en camino con el motorizado.</div>
             `;
         }
+        msgContainer.scrollTop = msgContainer.scrollHeight;
     };
 
     window.closeMockChat = function() {
@@ -387,6 +393,10 @@ document.addEventListener('DOMContentLoaded', () => {
         void scooter.offsetWidth; // Trigger reflow to apply 'none'
         scooter.style.animation = null; // Re-apply animation from CSS
         scooter.style.animationPlayState = 'paused';
+    };
+
+    window.callCourierSim = function() {
+        alert("📞 Llamando a Carlos Mendoza (Repartidor)...\n[Simulación]: Conexión GPS establecida por canal seguro de voz encriptado.");
     };
 
     /* --------------------------------------------------------------------------
