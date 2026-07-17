@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
-const { GoogleGenAI } = require('@google/generative-ai');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
 const app = express();
 app.use(express.json());
@@ -15,9 +15,7 @@ const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN || 'dracotoken123';
 // Initialize Gemini Client
 let genAI;
 try {
-    if (GEMINI_API_KEY) {
-        genAI = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-    }
+        genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 } catch (e) {
     console.error("Error inicializando Gemini SDK:", e.message);
 }
