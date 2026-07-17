@@ -229,22 +229,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.sendQuickReply = function(id) {
         const msgContainer = document.getElementById('chat-messages-container');
+        
+        // Disable reply buttons during response typing
+        const btn1 = document.getElementById('btn-reply-1');
+        const btn2 = document.getElementById('btn-reply-2');
+        if (btn1) btn1.disabled = true;
+        if (btn2) btn2.disabled = true;
+
         if (id === 1) {
             msgContainer.innerHTML += `
-                <div class="chat-msg sent">¿Dónde está mi pedido?</div>
-                <div class="chat-msg received">El motorizado se encuentra en Av. Larco 410, estimamos la entrega en 3 minutos. 🗺️</div>
+                <div class="chat-msg sent">¿Dónde está mi pedido? <span style="font-size:0.55rem; opacity:0.6; margin-left:4px;">9:41 AM ✓✓</span></div>
             `;
         } else {
             msgContainer.innerHTML += `
-                <div class="chat-msg sent">Ver Mapa 🗺️</div>
-                <div class="chat-msg received">
-                    <div class="mock-map">
-                        <div class="mock-map-marker">📍</div>
-                    </div>
-                </div>
+                <div class="chat-msg sent">Ver Mapa 🗺️ <span style="font-size:0.55rem; opacity:0.6; margin-left:4px;">9:41 AM ✓✓</span></div>
             `;
         }
         msgContainer.scrollTop = msgContainer.scrollHeight;
+
+        // Typing indicator simulation
+        const typingId = 'typing-' + Date.now();
+        msgContainer.innerHTML += `
+            <div class="chat-msg received" id="${typingId}" style="font-style: italic; color: var(--text-muted); opacity: 0.8; display: flex; align-items: center; gap: 4px;">
+                Escribiendo<span class="typing-pulse">...</span>
+            </div>
+        `;
+        msgContainer.scrollTop = msgContainer.scrollHeight;
+
+        setTimeout(() => {
+            const typingEl = document.getElementById(typingId);
+            if (typingEl) typingEl.remove();
+
+            if (id === 1) {
+                msgContainer.innerHTML += `
+                    <div class="chat-msg received">El motorizado se encuentra en Av. Larco 410, estimamos la entrega en 3 minutos. 🗺️ <span style="font-size:0.55rem; opacity:0.4; display:block; text-align:right; margin-top:2px;">9:42 AM</span></div>
+                `;
+            } else {
+                msgContainer.innerHTML += `
+                    <div class="chat-msg received">
+                        <div class="mock-map" style="background:#151821; border: 1px solid var(--border-color); border-radius:10px; padding:10px; margin-top:5px; height:80px; position:relative; overflow:hidden;">
+                            <div class="mock-map-bg" style="position:absolute; width:100%; height:100%; top:0; left:0; opacity:0.1; background:radial-gradient(circle, #fff 10%, transparent 11%), radial-gradient(circle, #fff 10%, transparent 11%); background-size:10px 10px; background-position:0 0, 5px 5px;"></div>
+                            <div class="mock-map-marker" style="animation: pulse 1.5s infinite; color:#ff4d6d; font-size:1.1rem; position:absolute; top:35%; left:45%; z-index:2;">📍</div>
+                            <div style="font-size:0.55rem; color:#fff; position:absolute; bottom:6px; left:8px; z-index:2; font-weight:700; background:rgba(0,0,0,0.6); padding:2px 6px; border-radius:4px;">Av. Larco 410</div>
+                        </div>
+                    </div>
+                `;
+            }
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+            if (btn1) btn1.disabled = false;
+            if (btn2) btn2.disabled = false;
+        }, 1000);
+    };
+
+    window.toggleFavorite = function(btn) {
+        btn.classList.toggle('active');
     };
 
     // Vibe Store Cart State
@@ -309,11 +347,20 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('¡Agrega productos al carrito primero!');
             return;
         }
-        alert('🛍️ ¡Pedido de Tienda Recibido! Tu compra de zapatillas/ropa ha sido simulada exitosamente.');
+        // Close Cart
+        document.getElementById('mock-cart-popup').style.display = 'none';
+        
+        // Show Success Overlay
+        document.getElementById('checkout-success-overlay').style.display = 'flex';
+        
+        // Clear Cart
         mockCart = [];
         document.getElementById('cart-count').innerText = 0;
         updateCartPopup();
-        window.toggleCartPopup();
+    };
+
+    window.closeSuccessOverlay = function() {
+        document.getElementById('checkout-success-overlay').style.display = 'none';
     };
 
     // GeoLoc Active Route Demo state
@@ -395,8 +442,31 @@ document.addEventListener('DOMContentLoaded', () => {
         scooter.style.animationPlayState = 'paused';
     };
 
+    let callTimerInterval = null;
     window.callCourierSim = function() {
-        alert("📞 Llamando a Carlos Mendoza (Repartidor)...\n[Simulación]: Conexión GPS establecida por canal seguro de voz encriptado.");
+        const overlay = document.getElementById('mock-call-overlay');
+        const timerEl = document.getElementById('call-status-timer');
+        overlay.style.display = 'flex';
+        
+        let seconds = 0;
+        timerEl.innerText = "Llamando...";
+        
+        setTimeout(() => {
+            timerEl.innerText = "Conectado • 00:00";
+            callTimerInterval = setInterval(() => {
+                seconds++;
+                let mins = Math.floor(seconds / 60);
+                let secs = seconds % 60;
+                timerEl.innerText = `Conectado • ${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }, 1000);
+        }, 1200);
+    };
+
+    window.endCallSim = function() {
+        const overlay = document.getElementById('mock-call-overlay');
+        overlay.style.display = 'none';
+        clearInterval(callTimerInterval);
+        callTimerInterval = null;
     };
 
     /* --------------------------------------------------------------------------

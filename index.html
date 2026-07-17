@@ -243,6 +243,10 @@
                                                 🛒 <span id="cart-count">0</span>
                                             </div>
                                         </div>
+                                        <div class="store-search-bar">
+                                            <span class="search-icon">🔍</span>
+                                            <input type="text" placeholder="Buscar sneakers..." disabled />
+                                        </div>
                                         <div class="store-categories">
                                             <span class="cat-pill active" onclick="filterStore('all')">Todos</span>
                                             <span class="cat-pill" onclick="filterStore('sneakers')">Sneakers</span>
@@ -250,6 +254,7 @@
                                         </div>
                                         <div class="store-products" id="store-products-list">
                                             <div class="prod-card" data-cat="sneakers">
+                                                <button class="btn-fav-prod" onclick="toggleFavorite(this)">♥</button>
                                                 <div class="prod-tag hot">HOT</div>
                                                 <div class="prod-emoji-wrapper">👟</div>
                                                 <h5>Jordan Retro 4</h5>
@@ -260,6 +265,7 @@
                                                 </div>
                                             </div>
                                             <div class="prod-card" data-cat="clothes">
+                                                <button class="btn-fav-prod" onclick="toggleFavorite(this)">♥</button>
                                                 <div class="prod-tag new">NEW</div>
                                                 <div class="prod-emoji-wrapper">🧥</div>
                                                 <h5>Hoodie Vibe</h5>
@@ -270,6 +276,7 @@
                                                 </div>
                                             </div>
                                             <div class="prod-card" data-cat="sneakers">
+                                                <button class="btn-fav-prod" onclick="toggleFavorite(this)">♥</button>
                                                 <div class="prod-tag promo">30% OFF</div>
                                                 <div class="prod-emoji-wrapper">🥾</div>
                                                 <h5>Air Max 90</h5>
@@ -280,6 +287,7 @@
                                                 </div>
                                             </div>
                                             <div class="prod-card" data-cat="clothes">
+                                                <button class="btn-fav-prod" onclick="toggleFavorite(this)">♥</button>
                                                 <div class="prod-tag trending">TREND</div>
                                                 <div class="prod-emoji-wrapper">👕</div>
                                                 <h5>T-Shirt Oversized</h5>
@@ -291,7 +299,10 @@
                                             </div>
                                         </div>
                                         <div class="mock-cart-popup" id="mock-cart-popup" style="display: none;">
-                                            <h4>Tu Carrito</h4>
+                                            <div class="cart-popup-header">
+                                                <h4>Tu Carrito</h4>
+                                                <span class="close-cart-btn" onclick="toggleCartPopup()">✕</span>
+                                            </div>
                                             <div class="cart-items-list" id="cart-items-list">
                                                 <p class="empty-cart-text">El carrito está vacío.</p>
                                             </div>
@@ -300,6 +311,13 @@
                                                 <strong id="cart-total-val">$0 USD</strong>
                                             </div>
                                             <button class="checkout-btn" onclick="mockCheckout()">Finalizar Pedido</button>
+                                        </div>
+                                        <!-- Checkout Success Modal -->
+                                        <div class="checkout-success-overlay" id="checkout-success-overlay" style="display: none;">
+                                            <div class="success-icon-check">✓</div>
+                                            <h4>¡Pedido Exitoso!</h4>
+                                            <p>Tu orden ha sido registrada en el sistema de Vibe Store.</p>
+                                            <button class="btn-close-success" onclick="closeSuccessOverlay()">Entendido</button>
                                         </div>
                                     </div>
                                 </div>
@@ -373,6 +391,15 @@
                                                     <button class="btn-geo" id="btn-start-route" onclick="toggleRouteAnimation()">Iniciar Ruta</button>
                                                     <button class="btn-geo secondary" onclick="resetRouteAnimation()">Reiniciar</button>
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <!-- Mock Call Screen Overlay -->
+                                        <div class="mock-call-overlay" id="mock-call-overlay" style="display: none;">
+                                            <div class="call-avatar-large">👨‍✈️</div>
+                                            <h4 class="call-name">Carlos Mendoza</h4>
+                                            <p class="call-status" id="call-status-timer">Llamando...</p>
+                                            <div class="call-actions-row">
+                                                <button class="btn-decline-call" onclick="endCallSim()">✕</button>
                                             </div>
                                         </div>
                                     </div>

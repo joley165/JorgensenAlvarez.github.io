@@ -3097,5 +3097,228 @@ body {
     }
 }
 
+/* Upgraded Premium Interactive Overlays and Inputs */
+
+/* Store Search Bar */
+.store-search-bar {
+    display: flex;
+    align-items: center;
+    background: hsla(215, 10%, 10%, 0.8);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin: 0 12px 10px 12px;
+}
+
+.store-search-bar .search-icon {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    margin-right: 6px;
+}
+
+.store-search-bar input {
+    background: none;
+    border: none;
+    font-size: 0.68rem;
+    color: #fff;
+    width: 100%;
+    outline: none;
+}
+
+/* Favorite Heart Button */
+.btn-fav-prod {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: hsla(215, 10%, 8%, 0.6);
+    border: 1px solid var(--border-color);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 10;
+}
+
+.btn-fav-prod.active {
+    color: #ff4d6d;
+    background: hsla(345, 100%, 95%, 0.12);
+    border-color: #ff4d6d;
+}
+
+/* Close buttons inside modals */
+.cart-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 6px;
+}
+
+.cart-popup-header h4 {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.close-cart-btn, .btn-close-success {
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.close-cart-btn:hover {
+    color: #fff;
+}
+
+/* Checkout Success Modal Overlay */
+.checkout-success-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0f121ae6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 200;
+    animation: modalFadeIn 0.3s forwards;
+}
+
+.success-icon-check {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #70e000, #38b000);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    box-shadow: 0 0 20px rgba(112, 224, 0, 0.4);
+}
+
+.checkout-success-overlay h4 {
+    font-size: 0.95rem;
+    color: #fff;
+    margin: 0 0 8px 0;
+    font-weight: 800;
+}
+
+.checkout-success-overlay p {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 0 0 20px 0;
+}
+
+.btn-close-success {
+    background: var(--grad-primary);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: filter 0.2s;
+    width: 100%;
+    max-width: 100px;
+    text-align: center;
+}
+
+.btn-close-success:hover {
+    filter: brightness(1.1);
+}
+
+/* Mock Phone Call Overlay Screen */
+.mock-call-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #141722, #0d0f17);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 300;
+    animation: modalFadeIn 0.3s forwards;
+}
+
+.call-avatar-large {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4ea8de, #560bad);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+.call-name {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0 0 6px 0;
+}
+
+.call-status {
+    font-size: 0.7rem;
+    color: var(--accent-cyan);
+    margin: 0 0 50px 0;
+    letter-spacing: 0.5px;
+}
+
+.call-actions-row {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-decline-call {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #d90429;
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 16px rgba(217, 4, 41, 0.4);
+    transition: transform 0.2s;
+}
+
+.btn-decline-call:hover {
+    transform: scale(1.05);
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
 
 
