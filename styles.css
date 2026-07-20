@@ -3526,6 +3526,119 @@ body {
     color: var(--text-muted);
 }
 
+/* Custom Glow Cursor (Desktop only) */
+@media (min-width: 992px) {
+    #custom-cursor {
+        position: fixed;
+        width: 36px;
+        height: 36px;
+        border: 2px solid rgba(76, 201, 240, 0.5);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
+        z-index: 9999;
+        box-shadow: 0 0 15px rgba(76, 201, 240, 0.3);
+    }
+
+    #custom-cursor-dot {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: var(--accent-cyan);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        z-index: 10000;
+        box-shadow: 0 0 10px var(--accent-cyan);
+    }
+
+    #custom-cursor.hovered {
+        width: 54px;
+        height: 54px;
+        background: rgba(114, 9, 183, 0.15);
+        border-color: var(--accent-pink);
+    }
+}
+
+/* Typewriter Cursor Animation */
+.typewriter-cursor {
+    display: inline-block;
+    color: var(--accent-cyan);
+    font-weight: 300;
+    margin-left: 2px;
+    animation: blinkCursor 0.8s infinite;
+}
+
+@keyframes blinkCursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Orbiting Tech Badges around Hero Portrait */
+.orbit-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.orbiting-badge {
+    position: absolute;
+    background: rgba(15, 18, 26, 0.85);
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 100px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    backdrop-filter: blur(8px);
+    animation: floatOrbit 6s infinite ease-in-out;
+}
+
+.android-orbit { top: -10px; left: -20px; animation-delay: 0s; }
+.xcode-orbit { top: 30%; right: -30px; animation-delay: 1.5s; }
+.react-orbit { bottom: 10px; left: -10px; animation-delay: 3s; }
+.ai-orbit { bottom: -15px; right: 20px; animation-delay: 4.5s; }
+
+@keyframes floatOrbit {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+/* Glassmorphism Glare Reflection Effect */
+.service-card, .simulator-card, .hero-profile-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::after, .simulator-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 45%,
+        rgba(255, 255, 255, 0.05) 50%,
+        transparent 55%
+    );
+    transform: rotate(30deg);
+    transition: transform 0.8s ease-in-out;
+    pointer-events: none;
+}
+
+.service-card:hover::after, .simulator-card:hover::after {
+    transform: rotate(30deg) translate(20%, 20%);
+}
+
+
 
 
 

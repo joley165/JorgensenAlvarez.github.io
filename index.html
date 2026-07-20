@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="styles.css?v=1.2.0">
 </head>
 <body>
+    <!-- Custom Glow Cursor -->
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-dot"></div>
+
     <!-- Scroll Progress Indicator -->
     <div id="scroll-progress"></div>
 
@@ -54,8 +58,8 @@
                 <div class="hero-content">
                     <span class="badge" id="hero-badge">Disponible para nuevos proyectos</span>
                     <h1 class="hero-title" id="hero-main-title">
-                        Aplicaciones Móviles con <br>
-                        <span class="gradient-text">Android Studio, Xcode & React Native</span>
+                        Especialista en <br>
+                        <span class="gradient-text" id="typewriter-text">Android Studio & Xcode</span><span class="typewriter-cursor">|</span>
                     </h1>
                     <p class="hero-description" id="hero-desc">
                         Hola, soy <strong>Jorgensen Alvarez</strong>. Transformo ideas en aplicaciones móviles estables y de alto rendimiento utilizando principalmente <strong>Android Studio</strong> y <strong>Xcode</strong> en nativo, así como <strong>React Native</strong> para soluciones multiplataforma rápidas y optimizadas.
@@ -141,6 +145,12 @@
                     <!-- Glowing frame containing portrait image -->
                     <div class="hero-profile-container">
                         <div class="hero-profile-glow"></div>
+                        <div class="orbit-container">
+                            <div class="orbiting-badge android-orbit">🤖 Android</div>
+                            <div class="orbiting-badge xcode-orbit">🛠️ Xcode</div>
+                            <div class="orbiting-badge react-orbit">⚡ React Native</div>
+                            <div class="orbiting-badge ai-orbit">🧠 Gemini AI</div>
+                        </div>
                         <div class="hero-profile-card">
                             <img src="assets/jorgensen.jpg" alt="Jorgensen Alvarez - Mobile Developer Expert" class="hero-profile-img">
                         </div>

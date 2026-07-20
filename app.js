@@ -741,4 +741,83 @@ document.addEventListener('DOMContentLoaded', () => {
             selectedBlock.style.display = 'block';
         }
     };
+
+    /* --------------------------------------------------------------------------
+       11. EFECTO MÁQUINA DE ESCRIBIR ROTATIVA (Typewriter Effect)
+       -------------------------------------------------------------------------- */
+    const typewriterEl = document.getElementById('typewriter-text');
+    if (typewriterEl) {
+        const phrases = [
+            "Android Studio & Xcode",
+            "Agentes de IA & WhatsApp API",
+            "React Native Multiplataforma"
+        ];
+        let phraseIdx = 0;
+        let charIdx = 0;
+        let isDeleting = false;
+
+        function typeLoop() {
+            const currentPhrase = phrases[phraseIdx];
+            if (isDeleting) {
+                typewriterEl.textContent = currentPhrase.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                typewriterEl.textContent = currentPhrase.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIdx === currentPhrase.length) {
+                typeSpeed = 2200; 
+                isDeleting = true;
+            } else if (isDeleting && charIdx === 0) {
+                isDeleting = false;
+                phraseIdx = (phraseIdx + 1) % phrases.length;
+                typeSpeed = 400; 
+            }
+
+            setTimeout(typeLoop, typeSpeed);
+        }
+
+        typeLoop();
+    }
+
+    /* --------------------------------------------------------------------------
+       12. CURSOR DE NEÓN PERSONALIZADO CON SEGUIMIENTO FLUIDO
+       -------------------------------------------------------------------------- */
+    const cursor = document.getElementById('custom-cursor');
+    const cursorDot = document.getElementById('custom-cursor-dot');
+
+    if (cursor && cursorDot && window.innerWidth >= 992) {
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let cursorX = mouseX;
+        let cursorY = mouseY;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
+        });
+
+        function renderCursor() {
+            cursorX += (mouseX - cursorX) * 0.15;
+            cursorY += (mouseY - cursorY) * 0.15;
+
+            cursor.style.left = `${cursorX}px`;
+            cursor.style.top = `${cursorY}px`;
+
+            requestAnimationFrame(renderCursor);
+        }
+        renderCursor();
+
+        const interactiveSelectors = 'a, button, .service-card, .simulator-card, .prod-card, input, select';
+        document.querySelectorAll(interactiveSelectors).forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+        });
+    }
 });
