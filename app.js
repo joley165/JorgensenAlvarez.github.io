@@ -721,4 +721,24 @@ document.addEventListener('DOMContentLoaded', () => {
             el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
         });
     });
+
+    window.switchCodeTab = function(lang) {
+        const tabs = document.querySelectorAll('.editor-tab');
+        const blocks = document.querySelectorAll('.code-block');
+
+        tabs.forEach(tab => tab.classList.remove('active'));
+        blocks.forEach(block => {
+            block.classList.remove('active');
+            block.style.display = 'none';
+        });
+
+        const selectedTab = document.getElementById(`tab-${lang}`);
+        const selectedBlock = document.getElementById(`code-${lang}`);
+
+        if (selectedTab) selectedTab.classList.add('active');
+        if (selectedBlock) {
+            selectedBlock.classList.add('active');
+            selectedBlock.style.display = 'block';
+        }
+    };
 });

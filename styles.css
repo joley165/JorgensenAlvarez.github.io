@@ -3320,5 +3320,212 @@ body {
     to { opacity: 1; transform: scale(1); }
 }
 
+/* Floating WhatsApp Action Button */
+.floating-whatsapp-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.floating-whatsapp-btn:hover {
+    transform: scale(1.08);
+}
+
+.whatsapp-icon-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+    animation: waPulse 2s infinite ease-in-out;
+}
+
+.whatsapp-icon-circle svg {
+    width: 32px;
+    height: 32px;
+}
+
+.whatsapp-tooltip {
+    background: rgba(15, 18, 26, 0.9);
+    border: 1px solid var(--border-color);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 100px;
+    margin-right: 12px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+    opacity: 0.95;
+}
+
+@keyframes waPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6); }
+    50% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+}
+
+/* Code Showcase Section (Dark IDE) */
+.code-showcase-section {
+    padding: 90px 0;
+    background: var(--bg-darker);
+}
+
+.code-editor-wrapper {
+    background: #0f121a;
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    margin-top: 40px;
+}
+
+.editor-header {
+    background: #161a26;
+    display: flex;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-color);
+    justify-content: space-between;
+}
+
+.editor-dots {
+    display: flex;
+    gap: 6px;
+}
+
+.editor-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.editor-dots .dot.red { background: #ff5f56; }
+.editor-dots .dot.yellow { background: #ffbd2e; }
+.editor-dots .dot.green { background: #27c93f; }
+
+.editor-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.editor-tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--tr-fast);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.editor-tab.active, .editor-tab:hover {
+    background: hsla(215, 10%, 20%, 0.6);
+    color: #fff;
+}
+
+.editor-body {
+    padding: 20px 24px;
+    overflow-x: auto;
+}
+
+.code-block {
+    margin: 0;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #d4d4d4;
+}
+
+.k-kw { color: #569cd6; font-weight: bold; }
+.k-cl { color: #4ec9b0; }
+.k-fn { color: #dcdcaa; }
+
+/* Testimonials Section */
+.testimonials-section {
+    padding: 90px 0;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    margin-top: 40px;
+}
+
+.testimonial-card {
+    background: hsla(215, 10%, 10%, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-cyan);
+}
+
+.testi-stars {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+}
+
+.testi-quote {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.testi-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.testi-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3f37c9, #7209b7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+.testi-info h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.testi-info span {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+
 
 
