@@ -3561,18 +3561,9 @@ body {
     }
 }
 
-/* Typewriter Cursor Animation */
-.typewriter-cursor {
-    display: inline-block;
-    color: var(--accent-cyan);
-    font-weight: 300;
-    margin-left: 2px;
-    animation: blinkCursor 0.8s infinite;
-}
-
-@keyframes blinkCursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+/* Typewriter Smooth Fade Effect */
+#typewriter-text {
+    transition: opacity 0.4s ease-in-out;
 }
 
 /* Orbiting Tech Badges around Hero Portrait */
@@ -3597,17 +3588,17 @@ body {
     color: #fff;
     box-shadow: 0 8px 20px rgba(0,0,0,0.4);
     backdrop-filter: blur(8px);
-    animation: floatOrbit 6s infinite ease-in-out;
+    animation: floatOrbit 12s infinite ease-in-out;
 }
 
 .android-orbit { top: -10px; left: -20px; animation-delay: 0s; }
-.xcode-orbit { top: 30%; right: -30px; animation-delay: 1.5s; }
-.react-orbit { bottom: 10px; left: -10px; animation-delay: 3s; }
-.ai-orbit { bottom: -15px; right: 20px; animation-delay: 4.5s; }
+.xcode-orbit { top: 30%; right: -30px; animation-delay: 3s; }
+.react-orbit { bottom: 10px; left: -10px; animation-delay: 6s; }
+.ai-orbit { bottom: -15px; right: 20px; animation-delay: 9s; }
 
 @keyframes floatOrbit {
     0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-12px) rotate(3deg); }
+    50% { transform: translateY(-5px) rotate(1.5deg); }
 }
 
 /* Glassmorphism Glare Reflection Effect */

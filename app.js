@@ -743,7 +743,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /* --------------------------------------------------------------------------
-       11. EFECTO MÁQUINA DE ESCRIBIR ROTATIVA (Typewriter Effect)
+       11. TRANSICIÓN SUAVE DE TÍTULOS (Smooth Fade Phrases)
        -------------------------------------------------------------------------- */
     const typewriterEl = document.getElementById('typewriter-text');
     if (typewriterEl) {
@@ -753,34 +753,15 @@ document.addEventListener('DOMContentLoaded', () => {
             "React Native Multiplataforma"
         ];
         let phraseIdx = 0;
-        let charIdx = 0;
-        let isDeleting = false;
 
-        function typeLoop() {
-            const currentPhrase = phrases[phraseIdx];
-            if (isDeleting) {
-                typewriterEl.textContent = currentPhrase.substring(0, charIdx - 1);
-                charIdx--;
-            } else {
-                typewriterEl.textContent = currentPhrase.substring(0, charIdx + 1);
-                charIdx++;
-            }
-
-            let typeSpeed = isDeleting ? 40 : 80;
-
-            if (!isDeleting && charIdx === currentPhrase.length) {
-                typeSpeed = 2200; 
-                isDeleting = true;
-            } else if (isDeleting && charIdx === 0) {
-                isDeleting = false;
+        setInterval(() => {
+            typewriterEl.style.opacity = '0';
+            setTimeout(() => {
                 phraseIdx = (phraseIdx + 1) % phrases.length;
-                typeSpeed = 400; 
-            }
-
-            setTimeout(typeLoop, typeSpeed);
-        }
-
-        typeLoop();
+                typewriterEl.textContent = phrases[phraseIdx];
+                typewriterEl.style.opacity = '1';
+            }, 450);
+        }, 4000);
     }
 
     /* --------------------------------------------------------------------------
